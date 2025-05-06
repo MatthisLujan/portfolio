@@ -1,0 +1,143 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-image: url('fond.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  header {
+    text-align: center;
+    padding: 80px 20px 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 3em;
+  }
+  
+  p {
+    font-size: 1.2em;
+    max-width: 700px;
+    margin: 10px auto;
+  }
+  
+  .info-message {
+    margin-top: 10px;
+    font-size: 0.95em;
+    color: #ccc;
+  }
+  
+  .menu-select {
+    text-align: center;
+    margin: 30px 0;
+  }
+  
+  select {
+    padding: 10px;
+    font-size: 1.1em;
+    border-radius: 5px;
+    border: none;
+    background-color: white;
+    color: black;
+  }
+  
+  .menu-photo {
+    width: 400px;
+    margin: 30px auto;
+    text-align: center;
+  }
+  
+  .image-wrapper {
+    border: 3px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+    display: inline-block;
+    background-color: transparent; /* plus d'opacité */
+  }
+  
+  .image-wrapper img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    display: block;
+  }
+  
+  .menu-photo p {
+    font-size: 1.1em;
+    color: white;
+  }
+  
+  
+  
+  .category-section {
+    display: none;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .category-section.active {
+    display: block;
+  }
+  
+  .category-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  
+  .gallery-item {
+    width: 250px;
+    border: 3px solid #fff;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .gallery-item img {
+    width: 100%;
+    display: block;
+  }
+  
+  .gallery-item p {
+    margin: 10px;
+    color: #fff;
+    font-weight: 500;
+  }
+  
+  .gallery-item:hover {
+    transform: scale(1.05);
+  }
+  
+  footer {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    margin-top: auto;
+  }
+  
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
