@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-image: url('fond.jpg');
+      background-image: url('fond.jpg'); /* image à la racine du dépôt */
       background-size: cover;
       background-position: center;
       color: white;
@@ -68,14 +68,14 @@
     }
 
     .image-wrapper {
-      border: 3px solid white; /* Cadre autour de l'image */
+      border: 3px solid white;
       padding: 10px;
       border-radius: 10px;
-      max-width: 300px; /* Reduire la taille du cadre autour de l'image */
+      max-width: 300px;
     }
 
     .menu-photo img {
-      width: 100%; /* Limiter la taille de l'image */
+      width: 100%;
       height: auto;
       border-radius: 10px;
     }
@@ -165,7 +165,7 @@
       <option value="menu">Menu</option>
       <option value="nature">Nature</option>
       <option value="portrait">Portraits</option>
-      <option value="animaux">Animaux</option> <!-- Changement ici -->
+      <option value="animaux">Animaux</option>
       <option value="autre">Autre</option>
     </select>
   </div>
@@ -176,7 +176,7 @@
       <div class="image-wrapper">
         <img src="cygne-nb.jpg" alt="Image de Menu">
       </div>
-      <p>Voici ma derniere photo, elle représente bien l'esprit de mon travail. N'hésitez pas à explorer les catégories !</p>
+      <p>Voici ma dernière photo, elle représente bien l'esprit de mon travail. N'hésitez pas à explorer les catégories !</p>
     </div>
   </div>
 
@@ -212,42 +212,37 @@
     </div>
   </div>
 
-  <!-- Animaux (ancienne section Noir et Blanc) -->
-  <div id="animaux" class="category-section"> <!-- Changement ici -->
-    <div class="category-title">Animaux</div> <!-- Changement ici -->
+  <!-- Animaux -->
+  <div id="animaux" class="category-section">
+    <div class="category-title">Animaux</div>
     <div class="gallery">
       <div class="gallery-item">
         <img src="cygne-nb.jpg" alt="Chat">
-        
       </div>
       <div class="gallery-item">
         <img src="crapaud.jpg" alt="Chien">
-        
       </div>
       <div class="gallery-item">
         <img src="toit.JPG" alt="Chien">
-
-    </div> 
+      </div>
     </div>
   </div>
 
-  <div id="autre" class="category-section"> <!-- Changement ici -->
-    <div class="category-title">Autre</div> <!-- Changement ici -->
+  <!-- Autre -->
+  <div id="autre" class="category-section">
+    <div class="category-title">Autre</div>
     <div class="gallery">
       <div class="gallery-item">
-        <img src="voiture.jpg" alt="Chat">
-        
+        <img src="voiture.jpg" alt="Voiture">
       </div>
       <div class="gallery-item">
-        <img src="bleu.JPG" alt="Chien">
-        
+        <img src="bleu.JPG" alt="Bleu">
+      </div>
+      <div class="gallery-item">
+        <img src="DSCN3724.JPG" alt="DSCN3724">
+      </div>
     </div>
-    <div class="gallery-item">
-      <img src="DSCN3724.JPG" alt="Chien">
-
-    </div> 
-    </div> 
-    </div>
+  </div>
 
   <footer>
     <p>© 2025 Matthis | Instagram : <a href="https://instagram.com/matthis.photo" target="_blank">@matthis.photo</a></p>
@@ -268,7 +263,8 @@
     }
 
     // Initialisation
-    window.onload = filterCategory;
+    window.addEventListener('load', filterCategory);
   </script>
+
 </body>
 </html>
