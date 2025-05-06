@@ -1,0 +1,274 @@
+<!DOCTYPE html> 
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio de Matthis</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url('fond.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 80px 20px 40px;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 3em;
+    }
+
+    p {
+      font-size: 1.2em;
+      max-width: 700px;
+      margin: 10px auto;
+    }
+
+    .info-message {
+      margin-top: 10px;
+      font-size: 0.95em;
+      color: #ccc;
+    }
+
+    .menu-select {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    select {
+      padding: 10px;
+      font-size: 1.1em;
+      border-radius: 5px;
+      border: none;
+      background-color: white;
+      color: black;
+    }
+
+    /* Style pour la photo du menu avec cadre */
+    .menu-photo {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 80%;
+      margin: 20px auto;
+    }
+
+    .image-wrapper {
+      border: 3px solid white; /* Cadre autour de l'image */
+      padding: 10px;
+      border-radius: 10px;
+      max-width: 300px; /* Reduire la taille du cadre autour de l'image */
+    }
+
+    .menu-photo img {
+      width: 100%; /* Limiter la taille de l'image */
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .menu-photo p {
+      margin-top: 15px;
+      font-size: 1.2em;
+      text-align: center;
+    }
+
+    .category-section {
+      display: none;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .category-section.active {
+      display: block;
+    }
+
+    .category-title {
+      font-size: 2em;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .gallery-item {
+      width: 250px;
+      border: 3px solid #fff;
+      border-radius: 12px;
+      background-color: rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      display: block;
+    }
+
+    .gallery-item p {
+      margin: 10px;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      margin-top: auto;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Matthis – Photographie</h1>
+    <p>Je suis Matthis, passionné de photographie. Découvrez ici mes créations à travers différentes catégories.</p>
+    <p class="info-message">Utilisez le menu ci-dessous pour accéder aux galeries.</p>
+  </header>
+
+  <div class="menu-select">
+    <select id="category-select" onchange="filterCategory()">
+      <option value="menu">Menu</option>
+      <option value="nature">Nature</option>
+      <option value="portrait">Portraits</option>
+      <option value="animaux">Animaux</option> <!-- Changement ici -->
+      <option value="autre">Autre</option>
+    </select>
+  </div>
+
+  <!-- Menu Page -->
+  <div id="menu" class="category-section active">
+    <div class="menu-photo">
+      <div class="image-wrapper">
+        <img src="cygne-nb.jpg" alt="Image de Menu">
+      </div>
+      <p>Voici ma derniere photo, elle représente bien l'esprit de mon travail. N'hésitez pas à explorer les catégories !</p>
+    </div>
+  </div>
+
+  <!-- Nature -->
+  <div id="nature" class="category-section">
+    <div class="category-title">Nature</div>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="ble.jpg.JPG" alt="Nature 1">
+      </div>
+      <div class="gallery-item">
+        <img src="fleur-petale.jpg.jpeg" alt="Nature 2">
+      </div>
+      <div class="gallery-item">
+        <img src="aurores.jpg" alt="Nature 3">
+      </div>
+      <div class="gallery-item">
+        <img src="bateau.jpg" alt="Nature 4">
+      </div>
+    </div>
+  </div>
+
+  <!-- Portrait -->
+  <div id="portrait" class="category-section">
+    <div class="category-title">Portraits</div>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="surf.JPG" alt="Portrait 1">
+      </div>
+      <div class="gallery-item">
+        <img src="ryan.jpg" alt="Portrait 2">
+      </div>
+    </div>
+  </div>
+
+  <!-- Animaux (ancienne section Noir et Blanc) -->
+  <div id="animaux" class="category-section"> <!-- Changement ici -->
+    <div class="category-title">Animaux</div> <!-- Changement ici -->
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="cygne-nb.jpg" alt="Chat">
+        
+      </div>
+      <div class="gallery-item">
+        <img src="crapaud.jpg" alt="Chien">
+        
+      </div>
+      <div class="gallery-item">
+        <img src="toit.JPG" alt="Chien">
+
+    </div> 
+    </div>
+  </div>
+
+  <div id="autre" class="category-section"> <!-- Changement ici -->
+    <div class="category-title">Autre</div> <!-- Changement ici -->
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="voiture.jpg" alt="Chat">
+        
+      </div>
+      <div class="gallery-item">
+        <img src="bleu.JPG" alt="Chien">
+        
+    </div>
+    <div class="gallery-item">
+      <img src="DSCN3724.JPG" alt="Chien">
+
+    </div> 
+    </div> 
+    </div>
+
+  <footer>
+    <p>© 2025 Matthis | Instagram : <a href="https://instagram.com/matthis.photo" target="_blank">@matthis.photo</a></p>
+  </footer>
+
+  <script>
+    function filterCategory() {
+      var value = document.getElementById('category-select').value;
+      var sections = document.querySelectorAll('.category-section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+
+      var selectedSection = document.getElementById(value);
+      if (selectedSection) {
+        selectedSection.classList.add('active');
+      }
+    }
+
+    // Initialisation
+    window.onload = filterCategory;
+  </script>
+</body>
+</html>
