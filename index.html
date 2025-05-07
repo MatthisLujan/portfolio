@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-image: url('fond.jpg'); /* image à la racine du dépôt */
+      background-image: url('fond.jpg');
       background-size: cover;
       background-position: center;
       color: white;
@@ -54,7 +54,6 @@
       color: black;
     }
 
-    /* Style pour la photo du menu avec cadre */
     .menu-photo {
       display: flex;
       flex-direction: column;
@@ -67,23 +66,53 @@
       margin: 20px auto;
     }
 
-    .image-wrapper {
-      border: 3px solid white;
-      padding: 10px;
-      border-radius: 10px;
-      max-width: 300px;
+    /* Container de l'image */
+.image-wrapper {
+  display: inline-block; /* Assure que le conteneur prend la taille exacte de l'image */
+  padding: 0; /* Élimine les marges internes */
+  border: 3px solid white; /* Applique le cadre autour de l'image */
+  border-radius: 10px; /* Coins arrondis */
+  box-sizing: border-box; /* Inclut la bordure dans la taille de l'élément */
+}
+
+/* Conteneur de l'image */
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Cache tout débordement */
+  padding: 0; /* Enlève les espaces inutiles autour de l'image */
+}
+
+/* Image dans le menu et la galerie */
+.menu-photo img,
+.gallery-item img {
+  width: 100%;
+  height: 100%; /* Permet à l'image de s'ajuster à la taille du conteneur */
+  border-radius: 10px; /* Coins arrondis */
+  object-fit: cover; /* Fait en sorte que l'image couvre l'espace sans déformation */
+  box-sizing: border-box; /* Assure que la bordure est incluse dans les dimensions de l'image */
+}
+
+
+
+    .hover-text {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 0.9em;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
     }
 
-    .menu-photo img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
-
-    .menu-photo p {
-      margin-top: 15px;
-      font-size: 1.2em;
-      text-align: center;
+    .image-container:hover .hover-text {
+      opacity: 1;
     }
 
     .category-section {
@@ -103,36 +132,71 @@
       letter-spacing: 1px;
     }
 
-    .gallery {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 30px;
-    }
+   /* Ajoute un espacement vertical entre les éléments de la galerie */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 10px; /* 20px entre les lignes et 10px entre les colonnes */
+  justify-items: center;
+  padding: 5px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
 
-    .gallery-item {
-      width: 250px;
-      border: 3px solid #fff;
-      border-radius: 12px;
-      background-color: rgba(255, 255, 255, 0.1);
-      overflow: hidden;
-      transition: transform 0.3s ease;
-    }
+/* Ajustement des cadres autour des images */
+.gallery-item {
+  max-width: 350px; /* Réduit la taille maximale des éléments de la galerie */
+  width: 100%;
+  border: 3px solid #fff; /* Bordure autour des images */
+  border-radius: 12px; /* Coins arrondis du cadre */
+  background-color: rgba(255, 255, 255, 0.1); /* Fond légèrement transparent */
+  padding: 10px; /* Espace entre l'image et le cadre */
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
 
-    .gallery-item img {
-      width: 100%;
-      display: block;
-    }
 
-    .gallery-item p {
-      margin: 10px;
-      color: #fff;
-      font-weight: 500;
-    }
+/* Réduction de la taille des images dans les galeries */
+.gallery-item img {
+  width: 90%; /* Réduit la largeur des images */
+  height: auto; /* Garde la proportion de l'image */
+  border-radius: 10px; /* Garder les coins arrondis */
+  object-fit: cover; /* Couvre l'espace sans déformer l'image */
+  transition: transform 0.3s ease;
+}
 
-    .gallery-item:hover {
-      transform: scale(1.05);
-    }
+/* Ajout d'un fond plus visible dans la section Menu */
+.menu-photo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 80%;
+  margin: 20px auto;
+  border: 3px solid white; /* Bordure blanche ajoutée */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.4); /* Ombre plus forte */
+  backdrop-filter: blur(5px); /* Effet flou */
+}
+
+/* Bordure et padding des images dans la section Menu */
+.menu-photo .image-wrapper {
+  border: 3px solid white;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 300px;
+}
+
+
+    /* Effet de survol avec un agrandissement plus léger */
+.gallery-item:hover {
+  transform: scale(1.03); /* Réduit l'agrandissement (au lieu de 1.05, on passe à 1.03) */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
 
     footer {
       text-align: center;
@@ -150,6 +214,57 @@
     a:hover {
       text-decoration: underline;
     }
+
+    #lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 1000;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 50px;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    #lightbox-prev {
+      left: 30px;
+    }
+
+    #lightbox-next {
+      right: 30px;
+    }
+
+    .shadowed-text {
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+    }
   </style>
 </head>
 <body>
@@ -157,7 +272,7 @@
   <header>
     <h1>Matthis – Photographie</h1>
     <p>Je suis Matthis, passionné de photographie. Découvrez ici mes créations à travers différentes catégories.</p>
-    <p class="info-message">Utilisez le menu ci-dessous pour accéder aux galeries.</p>
+    <p class="info-message">Utilisez le menu ci-dessus pour accéder aux galeries.</p>
   </header>
 
   <div class="menu-select">
@@ -170,32 +285,41 @@
     </select>
   </div>
 
-  <!-- Menu Page -->
-  <div id="menu" class="category-section active">
-    <div class="menu-photo">
-      <div class="image-wrapper">
+<!-- Menu -->
+<div id="menu" class="category-section active">
+  <div class="menu-photo" style="background: rgba(255,255,255,0.05); box-shadow: 0 8px 16px rgba(0,0,0,0.4); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.2); transition: transform 0.3s ease;">
+    <div class="image-wrapper">
+      <div class="image-container">
         <img src="cygne-nb.jpg" alt="Image de Menu">
+        <div class="hover-text">Clique pour mieux voir</div>
       </div>
-      <p>Voici ma dernière photo, elle représente bien l'esprit de mon travail. N'hésitez pas à explorer les catégories !</p>
     </div>
+    <h2 style="margin-top: 20px; font-size: 2em; letter-spacing: 1px; text-shadow: 1px 1px 3px black;">Bienvenue sur mon Portfolio</h2>
+    <p class="shadowed-text" style="font-size: 1.1em; max-width: 600px; text-align: center;">
+      Voici une de mes dernières photos ! Elle représente bien mon travail.
+    </p>
+    <p class="info-message shadowed-text">
+      Choisissez une catégorie dans le menu déroulant ci-dessus pour commencer.
+    </p>
+
+    <!-- Mention Instagram -->
+    <p class="contact-info">
+      <a href="https://instagram.com/matthis.photo" target="_blank">
+        Contactez-moi sur Instagram en cliquant ici !
+      </a>
+    </p>
   </div>
+</div>
+
 
   <!-- Nature -->
   <div id="nature" class="category-section">
     <div class="category-title">Nature</div>
     <div class="gallery">
-      <div class="gallery-item">
-        <img src="ble.jpg.JPG" alt="Nature 1">
-      </div>
-      <div class="gallery-item">
-        <img src="fleur-petale.jpg.jpeg" alt="Nature 2">
-      </div>
-      <div class="gallery-item">
-        <img src="aurores.jpg" alt="Nature 3">
-      </div>
-      <div class="gallery-item">
-        <img src="bateau.jpg" alt="Nature 4">
-      </div>
+      <div class="gallery-item"><div class="image-container"><img src="ble.jpg.JPG" alt="Nature 1"><div class="hover-text">Clique pour mieux voir</div></div></div>
+      <div class="gallery-item"><div class="image-container"><img src="fleur-petale.jpg.jpeg" alt="Nature 2"><div class="hover-text">Clique pour mieux voir</div></div></div>
+      <div class="gallery-item"><div class="image-container"><img src="aurores.jpg" alt="Nature 3"><div class="hover-text">Clique pour mieux voir</div></div></div>
+      <div class="gallery-item"><div class="image-container"><img src="bateau.jpg" alt="Nature 4"><div class="hover-text">Clique pour mieux voir</div></div></div>
     </div>
   </div>
 
@@ -203,12 +327,8 @@
   <div id="portrait" class="category-section">
     <div class="category-title">Portraits</div>
     <div class="gallery">
-      <div class="gallery-item">
-        <img src="surf.JPG" alt="Portrait 1">
-      </div>
-      <div class="gallery-item">
-        <img src="ryan.jpg" alt="Portrait 2">
-      </div>
+      <div class="gallery-item"><div class="image-container"><img src="surf.JPG" alt="Portrait 1"><div class="hover-text">Clique pour mieux voir</div></div></div>
+      <div class="gallery-item"><div class="image-container"><img src="ryan.jpg" alt="Portrait 2"><div class="hover-text">Clique pour mieux voir</div></div></div>
     </div>
   </div>
 
@@ -216,15 +336,11 @@
   <div id="animaux" class="category-section">
     <div class="category-title">Animaux</div>
     <div class="gallery">
-      <div class="gallery-item">
-        <img src="cygne-nb.jpg" alt="Chat">
-      </div>
-      <div class="gallery-item">
-        <img src="crapaud.jpg" alt="Chien">
-      </div>
-      <div class="gallery-item">
-        <img src="toit.JPG" alt="Chien">
-      </div>
+      <div class="gallery-item"><div class="image-container"><img src="cygne-nb.jpg" alt="Animaux 1"><div class="hover-text">Clique pour mieux voir</div></div></div>
+      <div class="gallery-item"><div class="image-container"><img src="crapaud.jpg" alt="Animaux 2"><div class="hover-text">Clique pour mieux voir</div></div></div>
+      <div class="gallery-item"><div class="image-container"><img src="toit.JPG" alt="Animaux 3"><div class="hover-text">Clique pour mieux voir</div></div></div>
+      <div class="gallery-item"><div class="image-container"><img src="moineau.png" alt="Animaux 3"><div class="hover-text">Clique pour mieux voir</div></div></div>
+      <div class="gallery-item"><div class="image-container"><img src="fleur-jaune.JPG" alt="Animaux 3"><div class="hover-text">Clique pour mieux voir</div></div></div>
     </div>
   </div>
 
@@ -232,15 +348,10 @@
   <div id="autre" class="category-section">
     <div class="category-title">Autre</div>
     <div class="gallery">
-      <div class="gallery-item">
-        <img src="voiture.jpg" alt="Voiture">
-      </div>
-      <div class="gallery-item">
-        <img src="bleu.JPG" alt="Bleu">
-      </div>
-      <div class="gallery-item">
-        <img src="DSCN3724.JPG" alt="DSCN3724">
-      </div>
+      <div class="gallery-item"><div class="image-container"><img src="voiture.jpg" alt="Autre 1"><div class="hover-text">Clique pour mieux voir</div></div></div>
+      <div class="gallery-item"><div class="image-container"><img src="bleu.JPG" alt="Autre 2"><div class="hover-text">Clique pour mieux voir</div></div></div>
+      <div class="gallery-item"><div class="image-container"><img src="DSCN3724.JPG" alt="Autre 3"><div class="hover-text">Clique pour mieux voir</div></div></div>
+      <div class="gallery-item"><div class="image-container"><img src="LUIDJI.JPG" alt="Autre 3"><div class="hover-text">Clique pour mieux voir</div></div></div>
     </div>
   </div>
 
@@ -248,23 +359,84 @@
     <p>© 2025 Matthis | Instagram : <a href="https://instagram.com/matthis.photo" target="_blank">@matthis.photo</a></p>
   </footer>
 
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <span id="lightbox-close">&times;</span>
+    <span id="lightbox-prev" class="lightbox-nav">&#10094;</span>
+    <img id="lightbox-img" src="" alt="Image agrandie" />
+    <span id="lightbox-next" class="lightbox-nav">&#10095;</span>
+  </div>
+
   <script>
     function filterCategory() {
-      var value = document.getElementById('category-select').value;
-      var sections = document.querySelectorAll('.category-section');
-      sections.forEach(section => {
+      const value = document.getElementById('category-select').value;
+      document.querySelectorAll('.category-section').forEach(section => {
         section.classList.remove('active');
       });
-
-      var selectedSection = document.getElementById(value);
+      const selectedSection = document.getElementById(value);
       if (selectedSection) {
         selectedSection.classList.add('active');
       }
     }
 
-    // Initialisation
-    window.addEventListener('load', filterCategory);
-  </script>
+    window.onload = function () {
+      filterCategory();
 
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const closeBtn = document.getElementById('lightbox-close');
+      const prevBtn = document.getElementById('lightbox-prev');
+      const nextBtn = document.getElementById('lightbox-next');
+
+      let currentImages = [];
+      let currentIndex = 0;
+
+      function showImage(index) {
+        if (currentImages.length === 0) return;
+        lightboxImg.src = currentImages[index].src;
+        currentIndex = index;
+        lightbox.style.display = 'flex';
+      }
+
+      document.querySelectorAll('.gallery').forEach(gallery => {
+        const images = gallery.querySelectorAll('img');
+        images.forEach((img, i) => {
+          img.addEventListener('click', () => {
+            currentImages = images;
+            showImage(i);
+          });
+        });
+      });
+
+      document.querySelectorAll('.menu-photo img').forEach(img => {
+        img.addEventListener('click', () => {
+          currentImages = [img];
+          showImage(0);
+        });
+      });
+
+      prevBtn.onclick = () => {
+        if (currentImages.length > 0) {
+          currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+          showImage(currentIndex);
+        }
+      };
+
+      nextBtn.onclick = () => {
+        if (currentImages.length > 0) {
+          currentIndex = (currentIndex + 1) % currentImages.length;
+          showImage(currentIndex);
+        }
+      };
+
+      closeBtn.onclick = () => lightbox.style.display = 'none';
+
+      lightbox.onclick = (e) => {
+        if (e.target === lightbox) {
+          lightbox.style.display = 'none';
+        }
+      };
+    };
+  </script>
 </body>
 </html>
