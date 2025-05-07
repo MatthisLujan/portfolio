@@ -268,12 +268,23 @@ a:hover {
   right: 30px;
 }
 
-/* Responsivité */
+/* Galerie avec défilement vertical sur mobile */
 @media (max-width: 768px) {
   .gallery {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    max-height: 60vh; /* Hauteur limitée pour les galeries */
+    overflow-y: auto; /* Défilement vertical */
+    margin-top: 20px; /* Espacement */
+  }
+
+  /* Assure-toi que les images ne débordent pas */
+  .gallery-item img {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
   }
 }
+
 
 @media (max-width: 480px) {
   .gallery {
