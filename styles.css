@@ -1,143 +1,279 @@
 body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-image: url('fond.jpg');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-image: url('fond.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  text-align: center;
+  padding: 80px 20px 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: padding 0.3s, background-color 0.3s;
+}
+
+h1 {
+  margin: 0;
+  font-size: 3em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+p {
+  font-size: 1.2em;
+  max-width: 700px;
+  margin: 10px auto;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.info-message {
+  margin-top: 10px;
+  font-size: 0.95em;
+  color: #ccc;
+}
+
+.menu-select {
+  text-align: center;
+  margin: 30px 0;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: slideIn 0.5s ease forwards;
+}
+
+select {
+  padding: 10px;
+  font-size: 1.1em;
+  border-radius: 5px;
+  border: none;
+  background-color: white;
+  color: black;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu-photo {
+  width: 400px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.menu-photo p {
+  font-size: 1.1em;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Container de l'image */
+.image-wrapper {
+  display: inline-block; /* Assure que le conteneur prend la taille exacte de l'image */
+  padding: 0; /* Élimine les marges internes */
+  border: 3px solid white; /* Applique le cadre autour de l'image */
+  border-radius: 10px; /* Coins arrondis */
+  box-sizing: border-box; /* Inclut la bordure dans la taille de l'élément */
+}
+
+/* Conteneur de l'image */
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Cache tout débordement */
+  padding: 0; /* Enlève les espaces inutiles autour de l'image */
+}
+
+/* Image dans le menu et la galerie */
+.menu-photo img,
+.gallery-item img {
+  width: 100%;
+  height: 100%; /* Permet à l'image de s'ajuster à la taille du conteneur */
+  border-radius: 10px; /* Coins arrondis */
+  object-fit: cover; /* Fait en sorte que l'image couvre l'espace sans déformation */
+  box-sizing: border-box; /* Assure que la bordure est incluse dans les dimensions de l'image */
+}
+
+
+.category-section {
+  display: none;
+  padding: 20px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.category-section.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.category-title {
+  font-size: 2em;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+  justify-items: center;
+  padding: 5px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.gallery-item {
+  max-width: 220px;
+  width: 100%;
+  border: 3px solid #fff;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 0.5s forwards;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  cursor: pointer;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  header {
-    text-align: center;
-    padding: 80px 20px 40px;
-    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.gallery-item p {
+  margin: 10px;
+  color: #fff;
+  font-weight: 500;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.gallery-item:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+.gallery-item img:hover {
+  transform: scale(1.05);
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  margin-top: auto;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Lightbox */
+#lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 1000;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: lightboxFadeIn 0.5s forwards;
+}
+
+@keyframes lightboxFadeIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
-  
-  h1 {
-    margin: 0;
-    font-size: 3em;
-  }
-  
-  p {
-    font-size: 1.2em;
-    max-width: 700px;
-    margin: 10px auto;
-  }
-  
-  .info-message {
-    margin-top: 10px;
-    font-size: 0.95em;
-    color: #ccc;
-  }
-  
-  .menu-select {
-    text-align: center;
-    margin: 30px 0;
-  }
-  
-  select {
-    padding: 10px;
-    font-size: 1.1em;
-    border-radius: 5px;
-    border: none;
-    background-color: white;
-    color: black;
-  }
-  
-  .menu-photo {
-    width: 400px;
-    margin: 30px auto;
-    text-align: center;
-  }
-  
-  .image-wrapper {
-    border: 3px solid white;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 15px;
-    display: inline-block;
-    background-color: transparent; /* plus d'opacité */
-  }
-  
-  .image-wrapper img {
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
-    display: block;
-  }
-  
-  .menu-photo p {
-    font-size: 1.1em;
-    color: white;
-  }
-  
-  
-  
-  .category-section {
-    display: none;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .category-section.active {
-    display: block;
-  }
-  
-  .category-title {
-    font-size: 2em;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  
+}
+
+#lightbox.open {
+  display: flex;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+#lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 50px;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}
+
+#lightbox-prev {
+  left: 30px;
+}
+
+#lightbox-next {
+  right: 30px;
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
   .gallery {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  .gallery-item {
-    width: 250px;
-    border: 3px solid #fff;
-    border-radius: 12px;
-    background-color: rgba(255, 255, 255, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease;
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: 1fr;
   }
-  
-  .gallery-item img {
-    width: 100%;
-    display: block;
-  }
-  
-  .gallery-item p {
-    margin: 10px;
-    color: #fff;
-    font-weight: 500;
-  }
-  
-  .gallery-item:hover {
-    transform: scale(1.05);
-  }
-  
-  footer {
-    text-align: center;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    margin-top: auto;
-  }
-  
-  a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
+}
+
+/* Effet de rétrécissement de l'en-tête lors du défilement */
+header.shrink {
+  padding: 40px 20px 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.menu-photo:hover {
+  transform: scale(1.02);
+}
+.shadowed-text {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+}
