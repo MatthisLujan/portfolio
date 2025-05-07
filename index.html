@@ -64,37 +64,48 @@
       border-radius: 15px;
       max-width: 80%;
       margin: 20px auto;
+      border: 3px solid white;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+      backdrop-filter: blur(5px);
     }
 
-    /* Container de l'image */
-.image-wrapper {
-  display: inline-block; /* Assure que le conteneur prend la taille exacte de l'image */
-  padding: 0; /* Élimine les marges internes */
-  border: 3px solid white; /* Applique le cadre autour de l'image */
-  border-radius: 10px; /* Coins arrondis */
-  box-sizing: border-box; /* Inclut la bordure dans la taille de l'élément */
-}
+    /* Style spécifique à l'image du menu */
+    #menu .menu-photo img {
+      width: auto; /* Laisse la largeur s'adapter automatiquement */
+      max-width: 300px; /* Limite la largeur de l'image à 300px (ajuste cette valeur si besoin) */
+      height: auto; /* Laisse la hauteur s'ajuster automatiquement */
+      object-fit: cover; /* L'image remplira son conteneur sans déformation */
+      border: 3px solid white; /* Applique un cadre blanc comme les autres images */
+      border-radius: 10px; /* Coins arrondis comme pour les autres images */
+      box-sizing: border-box; /* Prendre en compte le cadre dans la taille de l'image */
+      display: block; /* Centrer l'image horizontalement */
+      margin: 0 auto; /* Centrer l'image dans son conteneur */
+    }
 
-/* Conteneur de l'image */
-.image-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden; /* Cache tout débordement */
-  padding: 0; /* Enlève les espaces inutiles autour de l'image */
-}
+    .image-wrapper {
+      display: inline-block;
+      padding: 0;
+      border: 3px solid white;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
 
-/* Image dans le menu et la galerie */
-.menu-photo img,
-.gallery-item img {
-  width: 100%;
-  height: 100%; /* Permet à l'image de s'ajuster à la taille du conteneur */
-  border-radius: 10px; /* Coins arrondis */
-  object-fit: cover; /* Fait en sorte que l'image couvre l'espace sans déformation */
-  box-sizing: border-box; /* Assure que la bordure est incluse dans les dimensions de l'image */
-}
+    .image-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      padding: 0;
+    }
 
-
+    .menu-photo img,
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      box-sizing: border-box;
+    }
 
     .hover-text {
       position: absolute;
@@ -132,86 +143,70 @@
       letter-spacing: 1px;
     }
 
-/* Par défaut : 4 images par ligne */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px 10px;
-  justify-items: center;
-  padding: 5px;
-  max-height: 80vh;
-  overflow-y: auto;
-}
+    /* Grid layout pour la galerie */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4 colonnes sur grands écrans */
+      justify-items: center;
+      padding: 5px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
 
-/* Sur les petits écrans (tablettes, téléphones) : 2 images par ligne */
-@media (max-width: 768px) {
-  .gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+    .gallery-item {
+      margin-bottom: 30px; /* Espacement vertical entre les lignes */
+    }
 
-/* Sur les très petits écrans (smartphones) : 1 image par ligne */
-@media (max-width: 480px) {
-  .gallery {
-    grid-template-columns: 1fr;
-  }
-}
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 3px solid white; /* Cadre autour des images */
+      margin: 0 2px; /* Espacement horizontal entre les images */
+    }
 
+    /* Pour les écrans plus petits (tablettes) */
+    @media (max-width: 768px) {
+      .gallery {
+        grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+      }
 
-/* Ajustement des cadres autour des images */
-.gallery-item {
-  max-width: 350px; /* Réduit la taille maximale des éléments de la galerie */
-  width: 100%;
-  border: 3px solid #fff; /* Bordure autour des images */
-  border-radius: 12px; /* Coins arrondis du cadre */
-  background-color: rgba(255, 255, 255, 0.1); /* Fond légèrement transparent */
-  padding: 10px; /* Espace entre l'image et le cadre */
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
+      .gallery-item {
+        margin-bottom: 25px; /* Moins d'espace vertical entre les lignes */
+      }
+    }
 
+    /* Pour les petits écrans (téléphones) */
+    @media (max-width: 480px) {
+      .gallery {
+        grid-template-columns: 1fr; /* 1 colonne */
+      }
 
-/* Réduction de la taille des images dans les galeries */
-.gallery-item img {
-  width: 90%; /* Réduit la largeur des images */
-  height: auto; /* Garde la proportion de l'image */
-  border-radius: 10px; /* Garder les coins arrondis */
-  object-fit: cover; /* Couvre l'espace sans déformer l'image */
-  transition: transform 0.3s ease;
-}
+      .gallery-item {
+        margin-bottom: 20px; /* Espacement vertical encore plus petit */
+      }
+    }
 
-/* Ajout d'un fond plus visible dans la section Menu */
-.menu-photo {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
-  padding: 20px;
-  border-radius: 15px;
-  max-width: 80%;
-  margin: 20px auto;
-  border: 3px solid white; /* Bordure blanche ajoutée */
-  box-shadow: 0 8px 16px rgba(0,0,0,0.4); /* Ombre plus forte */
-  backdrop-filter: blur(5px); /* Effet flou */
-}
+    /* Appliquer le même cadre et taille d'image aux photos des catégories */
+    .category-section .menu-photo img,
+    .gallery-item img {
+      width: auto; /* Laisse la largeur s'ajuster automatiquement */
+      max-width: 300px; /* Limite la largeur à 300px (ajuste cette valeur si nécessaire) */
+      height: auto; /* Ajuste la hauteur automatiquement */
+      object-fit: cover; /* L'image remplira son conteneur sans déformation */
+      border: 3px solid white; /* Applique un cadre blanc autour de l'image */
+      border-radius: 10px; /* Coins arrondis comme pour l'image du menu */
+      box-sizing: border-box; /* Prendre en compte le cadre dans la taille de l'image */
+      display: block; /* Centrer l'image horizontalement */
+      margin: 0 auto; /* Centrer l'image dans son conteneur */
+    }
 
-/* Bordure et padding des images dans la section Menu */
-.menu-photo .image-wrapper {
-  border: 3px solid white;
-  padding: 10px;
-  border-radius: 10px;
-  max-width: 300px;
-}
-
-
-    /* Effet de survol avec un agrandissement plus léger */
-.gallery-item:hover {
-  transform: scale(1.03); /* Réduit l'agrandissement (au lieu de 1.05, on passe à 1.03) */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
+    .gallery-item:hover {
+      transform: scale(1.03);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
 
     footer {
       text-align: center;
@@ -300,34 +295,29 @@
     </select>
   </div>
 
-<!-- Menu -->
-<div id="menu" class="category-section active">
-  <div class="menu-photo" style="background: rgba(255,255,255,0.05); box-shadow: 0 8px 16px rgba(0,0,0,0.4); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.2); transition: transform 0.3s ease;">
-    <div class="image-wrapper">
-      <div class="image-container">
-        <img src="cygne-nb.jpg" alt="Image de Menu">
-        <div class="hover-text">Clique pour mieux voir</div>
+  <div id="menu" class="category-section active">
+    <div class="menu-photo">
+      <div class="image-wrapper">
+        <div class="image-container">
+          <img src="cygne-nb.jpg" alt="Image de Menu">
+          <div class="hover-text">Clique pour mieux voir</div>
+        </div>
       </div>
+      <h2>Bienvenue sur mon Portfolio</h2>
+      <p class="shadowed-text">
+        Voici une de mes dernières photos ! Elle représente bien mon travail.
+      </p>
+      <p class="info-message shadowed-text">
+        Choisissez une catégorie dans le menu déroulant ci-dessus pour commencer.
+      </p>
+      <p class="contact-info">
+        <a href="https://instagram.com/matthis.photo" target="_blank">
+          Contactez-moi sur Instagram en cliquant ici !
+        </a>
+      </p>
     </div>
-    <h2 style="margin-top: 20px; font-size: 2em; letter-spacing: 1px; text-shadow: 1px 1px 3px black;">Bienvenue sur mon Portfolio</h2>
-    <p class="shadowed-text" style="font-size: 1.1em; max-width: 600px; text-align: center;">
-      Voici une de mes dernières photos ! Elle représente bien mon travail.
-    </p>
-    <p class="info-message shadowed-text">
-      Choisissez une catégorie dans le menu déroulant ci-dessus pour commencer.
-    </p>
-
-    <!-- Mention Instagram -->
-    <p class="contact-info">
-      <a href="https://instagram.com/matthis.photo" target="_blank">
-        Contactez-moi sur Instagram en cliquant ici !
-      </a>
-    </p>
   </div>
-</div>
 
-
-  <!-- Nature -->
   <div id="nature" class="category-section">
     <div class="category-title">Nature</div>
     <div class="gallery">
@@ -338,7 +328,6 @@
     </div>
   </div>
 
-  <!-- Portrait -->
   <div id="portrait" class="category-section">
     <div class="category-title">Portraits</div>
     <div class="gallery">
@@ -347,26 +336,25 @@
     </div>
   </div>
 
-  <!-- Animaux -->
   <div id="animaux" class="category-section">
     <div class="category-title">Animaux</div>
     <div class="gallery">
-      <div class="gallery-item"><div class="image-container"><img src="cygne-nb.jpg" alt="Animaux 1"><div class="hover-text">Clique pour mieux voir</div></div></div>
-      <div class="gallery-item"><div class="image-container"><img src="crapaud.jpg" alt="Animaux 2"><div class="hover-text">Clique pour mieux voir</div></div></div>
-      <div class="gallery-item"><div class="image-container"><img src="toit.JPG" alt="Animaux 3"><div class="hover-text">Clique pour mieux voir</div></div></div>
-      <div class="gallery-item"><div class="image-container"><img src="moineau.png" alt="Animaux 3"><div class="hover-text">Clique pour mieux voir</div></div></div>
-      <div class="gallery-item"><div class="image-container"><img src="fleur-jaune.JPG" alt="Animaux 3"><div class="hover-text">Clique pour mieux voir</div></div></div>
+      <div class="gallery-item"><div class="image-container"><img src="cygne-nb.jpg" alt="Nature 1"><div class="hover-text">Clique pour mieux voir</div></div></div>
+      <div class="gallery-item"><div class="image-container"><img src="crapaud.jpg" alt="Nature 2"><div class="hover-text">Clique pour mieux voir</div></div></div>
+      <div class="gallery-item"><div class="image-container"><img src="moineau.png" alt="Nature 3"><div class="hover-text">Clique pour mieux voir</div></div></div>
+      <div class="gallery-item"><div class="image-container"><img src="moineau2.png" alt="Nature 4"><div class="hover-text">Clique pour mieux voir</div></div></div>
+      <div class="gallery-item"><div class="image-container"><img src="fleur-jaune.JPG" alt="Nature 4"><div class="hover-text">Clique pour mieux voir</div></div></div>
+      <div class="gallery-item"><div class="image-container"><img src="canard.jpg" alt="Nature 4"><div class="hover-text">Clique pour mieux voir</div></div></div>
     </div>
   </div>
 
-  <!-- Autre -->
   <div id="autre" class="category-section">
     <div class="category-title">Autre</div>
     <div class="gallery">
       <div class="gallery-item"><div class="image-container"><img src="voiture.jpg" alt="Autre 1"><div class="hover-text">Clique pour mieux voir</div></div></div>
       <div class="gallery-item"><div class="image-container"><img src="bleu.JPG" alt="Autre 2"><div class="hover-text">Clique pour mieux voir</div></div></div>
       <div class="gallery-item"><div class="image-container"><img src="DSCN3724.JPG" alt="Autre 3"><div class="hover-text">Clique pour mieux voir</div></div></div>
-      <div class="gallery-item"><div class="image-container"><img src="LUIDJI.JPG" alt="Autre 3"><div class="hover-text">Clique pour mieux voir</div></div></div>
+      <div class="gallery-item"><div class="image-container"><img src="LUIDJI.JPG" alt="Autre 4"><div class="hover-text">Clique pour mieux voir</div></div></div>
     </div>
   </div>
 
@@ -374,7 +362,6 @@
     <p>© 2025 Matthis | Instagram : <a href="https://instagram.com/matthis.photo" target="_blank">@matthis.photo</a></p>
   </footer>
 
-  <!-- Lightbox -->
   <div id="lightbox">
     <span id="lightbox-close">&times;</span>
     <span id="lightbox-prev" class="lightbox-nav">&#10094;</span>
@@ -407,49 +394,32 @@
       let currentIndex = 0;
 
       function showImage(index) {
-        if (currentImages.length === 0) return;
-        lightboxImg.src = currentImages[index].src;
-        currentIndex = index;
-        lightbox.style.display = 'flex';
-      }
+  if (currentImages.length === 0) return;
+  const image = currentImages[index];
+  lightboxImg.src = image.src;
+  lightboxImg.alt = image.alt || "Image";
+  currentIndex = index;
+  lightbox.style.display = 'flex';
+}
 
-      document.querySelectorAll('.gallery').forEach(gallery => {
-        const images = gallery.querySelectorAll('img');
-        images.forEach((img, i) => {
-          img.addEventListener('click', () => {
-            currentImages = images;
-            showImage(i);
-          });
-        });
-      });
 
-      document.querySelectorAll('.menu-photo img').forEach(img => {
+      document.querySelectorAll('.gallery img, .menu-photo img').forEach(img => {
         img.addEventListener('click', () => {
-          currentImages = [img];
-          showImage(0);
+          const parentSection = img.closest('.category-section');
+          currentImages = Array.from(parentSection.querySelectorAll('img'));
+          const index = currentImages.indexOf(img);
+          showImage(index);
         });
       });
-
-      prevBtn.onclick = () => {
-        if (currentImages.length > 0) {
-          currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-          showImage(currentIndex);
-        }
-      };
-
-      nextBtn.onclick = () => {
-        if (currentImages.length > 0) {
-          currentIndex = (currentIndex + 1) % currentImages.length;
-          showImage(currentIndex);
-        }
-      };
 
       closeBtn.onclick = () => lightbox.style.display = 'none';
-
-      lightbox.onclick = (e) => {
-        if (e.target === lightbox) {
-          lightbox.style.display = 'none';
-        }
+      prevBtn.onclick = () => {
+        currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+        showImage(currentIndex);
+      };
+      nextBtn.onclick = () => {
+        currentIndex = (currentIndex + 1) % currentImages.length;
+        showImage(currentIndex);
       };
     };
   </script>
