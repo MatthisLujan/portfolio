@@ -118,15 +118,31 @@ select {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
+/* Par défaut : 4 images par ligne */
 .gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 3px;
+  gap: 20px 10px;
   justify-items: center;
   padding: 5px;
   max-height: 80vh;
   overflow-y: auto;
 }
+
+/* Sur les petits écrans (tablettes, téléphones) : 2 images par ligne */
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Sur les très petits écrans (smartphones) : 1 image par ligne */
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 .gallery-item {
   max-width: 220px;
