@@ -131,8 +131,10 @@
     .menu-image {
         width: 100%;
         height: auto;
+        object-fit: cover; /* Assure que l'image s'ajuste bien */
     }
 }
+
 
     @media (max-width: 768px) {
       .gallery {
@@ -322,11 +324,13 @@
       background: white;
       opacity: 0;
       pointer-events: none;
-      z-index: 9999;
+      z-index: 9999999;
       transition: opacity 0.1s ease;
+      display: none;  /* Ajoute cette ligne pour que le flash soit masqué par défaut */
     }
 
   </style>
+  <div id="flash"></div>
 </head>
 <body>
 
@@ -362,7 +366,7 @@
       <p class="shadowed-text">
         Voici une de mes dernières photos ! Elle représente bien mon travail.
       </p>
-     <p class="camera-hint">Prend une photo !</p>
+     <p class="camera-hint">Prend une photo ! Attention au flash ! </p>
 
 <div class="camera-draw" onclick="flashScreen()">
   <div class="camera-body">
@@ -370,10 +374,6 @@
     <div class="flash"></div>
   </div>
 </div>
-
-<div id="flash"></div>
-
-
 
 
       <p class="info-message shadowed-text">
@@ -449,18 +449,20 @@
     "moineau2.png"
   ];
 
-  function flashScreen() {
-    const flash = document.getElementById('flash');
-    flash.style.opacity = 1;
+function flashScreen() {
+  const flash = document.getElementById('flash');
+  flash.style.display = "block";  // Affiche le flash
+  flash.style.opacity = 1;
 
-    setTimeout(() => {
-      flash.style.opacity = 0;
+  setTimeout(() => {
+    flash.style.opacity = 0;
+    flash.style.display = "none";  // Cache le flash après l'animation
+    // Changement d'image après le flash
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    document.getElementById('menu-image').src = images[currentImageIndex];
+  }, 100); // Durée du flash
+}
 
-      // Changement d'image après le flash
-      currentImageIndex = (currentImageIndex + 1) % images.length;
-      document.getElementById('menu-image').src = images[currentImageIndex];
-    }, 100); // Durée du flash
-  }
 
   function filterCategory() {
     const value = document.getElementById('category-select').value;
