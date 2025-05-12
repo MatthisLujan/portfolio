@@ -4,9 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portfolio de Matthis</title>
-  <style>
-    body {
+    <style>
+    /* Reset global styles */
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+      body {
       font-family: 'Segoe UI', sans-serif;
       background-image: url('fond.jpg');
       background-size: cover;
@@ -14,9 +19,10 @@
       color: white;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
+      min-height: 100vh; /* Garantir que la page prenne toute la hauteur */
+      overflow-x: hidden; /* Empêche le débordement horizontal */
+      position: relative;
     }
-
     header {
       text-align: center;
       padding: 80px 20px 40px;
@@ -67,63 +73,20 @@
       border: 3px solid white;
       box-shadow: 0 8px 16px rgba(0,0,0,0.4);
       backdrop-filter: blur(5px);
+      cursor: pointer;
     }
+    
 
-    /* Style spécifique à l'image du menu */
     #menu .menu-photo img {
-      width: auto; /* Laisse la largeur s'adapter automatiquement */
-      max-width: 300px; /* Limite la largeur de l'image à 300px (ajuste cette valeur si besoin) */
-      height: auto; /* Laisse la hauteur s'ajuster automatiquement */
-      object-fit: cover; /* L'image remplira son conteneur sans déformation */
-      border: 3px solid white; /* Applique un cadre blanc comme les autres images */
-      border-radius: 10px; /* Coins arrondis comme pour les autres images */
-      box-sizing: border-box; /* Prendre en compte le cadre dans la taille de l'image */
-      display: block; /* Centrer l'image horizontalement */
-      margin: 0 auto; /* Centrer l'image dans son conteneur */
-    }
-
-    .image-wrapper {
-      display: inline-block;
-      padding: 0;
+      width: auto;
+      max-width: 300px;
+      height: auto;
+      object-fit: cover;
       border: 3px solid white;
       border-radius: 10px;
       box-sizing: border-box;
-    }
-
-    .image-container {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      padding: 0;
-    }
-
-    .menu-photo img,
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      border-radius: 10px;
-      object-fit: cover;
-      box-sizing: border-box;
-    }
-
-    .hover-text {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.6);
-      color: white;
-      padding: 5px 10px;
-      border-radius: 8px;
-      font-size: 0.9em;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .image-container:hover .hover-text {
-      opacity: 1;
+      display: block;
+      margin: 0 auto;
     }
 
     .category-section {
@@ -143,10 +106,9 @@
       letter-spacing: 1px;
     }
 
-    /* Grid layout pour la galerie */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(4, 1fr); /* 4 colonnes sur grands écrans */
+      grid-template-columns: repeat(4, 1fr);
       justify-items: center;
       padding: 5px;
       max-height: 80vh;
@@ -154,7 +116,7 @@
     }
 
     .gallery-item {
-      margin-bottom: 30px; /* Espacement vertical entre les lignes */
+      margin-bottom: 30px;
     }
 
     .gallery-item img {
@@ -162,31 +124,25 @@
       height: auto;
       border-radius: 10px;
       object-fit: cover;
-      border: 3px solid white; /* Cadre autour des images */
-      margin: 0 2px; /* Espacement horizontal entre les images */
+      border: 3px solid white;
+      margin: 0 2px;
     }
 
-    /* Pour les écrans plus petits (tablettes) */
     @media (max-width: 768px) {
       .gallery {
-        grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
-      }
-
-      .gallery-item {
-        margin-bottom: 25px; /* Moins d'espace vertical entre les lignes */
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    /* Pour les petits écrans (téléphones) */
     @media (max-width: 480px) {
       .gallery {
-        grid-template-columns: 1fr; /* 1 colonne */
+        grid-template-columns: 1fr;
       }
-
+    }
       .gallery-item {
         margin-bottom: 20px; /* Espacement vertical encore plus petit */
       }
-    }
+    
 
     /* Appliquer le même cadre et taille d'image aux photos des catégories */
     .category-section .menu-photo img,
@@ -206,6 +162,25 @@
       transform: scale(1.03);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .hover-text {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 0.9em;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .image-container:hover .hover-text {
+      opacity: 1;
     }
 
     footer {
@@ -275,9 +250,81 @@
     .shadowed-text {
       text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
     }
+/* Texte au-dessus de l'appareil */
+.camera-hint {
+  text-align: center;
+  font-size: 10px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+/* Appareil photo */
+.camera-draw {
+  width: 80px;
+  height: 60px;
+  cursor: pointer;
+  animation: heartbeat 2s infinite;
+  margin: 0 auto 20px;
+}
+
+.camera-body {
+  width: 100%;
+  height: 100%;
+  background: #333;
+  border-radius: 8px;
+  position: relative;
+}
+
+.lens {
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, #666 20%, #000);
+  border-radius: 50%;
+  position: absolute;
+  top: 15px;
+  left: 25px;
+  border: 2px solid #999;
+}
+
+.flash {
+  width: 10px;
+  height: 10px;
+  background: #f5f5f5;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  border-radius: 50%;
+}
+
+/* Animation de battement */
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+ /* Flash blanc pleine page */
+    #flash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; /* Assurez-vous qu'il couvre toute la page */
+      background: white;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transition: opacity 0.1s ease;
+    }
+
   </style>
 </head>
 <body>
+
+
 
   <header>
     <h1>Matthis – Photographie</h1>
@@ -296,17 +343,33 @@
   </div>
 
   <div id="menu" class="category-section active">
-    <div class="menu-photo">
+    <div class="menu-photo" >
       <div class="image-wrapper">
         <div class="image-container">
-          <img src="cygne-nb.jpg" alt="Image de Menu">
-          <div class="hover-text">Clique pour mieux voir</div>
+          <img src="cygne-nb.jpg" alt="Image de Menu" id="menu-image">
+         
         </div>
       </div>
       <h2>Bienvenue sur mon Portfolio</h2>
+     
+
       <p class="shadowed-text">
         Voici une de mes dernières photos ! Elle représente bien mon travail.
       </p>
+     <p class="camera-hint">Prend une photo !</p>
+
+<div class="camera-draw" onclick="flashScreen()">
+  <div class="camera-body">
+    <div class="lens"></div>
+    <div class="flash"></div>
+  </div>
+</div>
+
+<div id="flash"></div>
+
+
+
+
       <p class="info-message shadowed-text">
         Choisissez une catégorie dans le menu déroulant ci-dessus pour commencer.
       </p>
@@ -359,70 +422,99 @@
     </div>
   </div>
 
+
+<div id="lightbox">
+  <img id="lightbox-img" src="" alt="">
+  <span id="lightbox-prev" class="lightbox-nav" onclick="navigateLightbox(-1)">&#10094;</span>
+  <span id="lightbox-next" class="lightbox-nav" onclick="navigateLightbox(1)">&#10095;</span>
+  <span id="lightbox-close" onclick="closeLightbox()">×</span>
+</div>
+
   <footer>
     <p>© 2025 Matthis | Instagram : <a href="https://instagram.com/matthis.photo" target="_blank">@matthis.photo</a></p>
   </footer>
 
-  <div id="lightbox">
-    <span id="lightbox-close">&times;</span>
-    <span id="lightbox-prev" class="lightbox-nav">&#10094;</span>
-    <img id="lightbox-img" src="" alt="Image agrandie" />
-    <span id="lightbox-next" class="lightbox-nav">&#10095;</span>
-  </div>
+<script>
+  let currentImageIndex = 0;
+  const images = [
+    "cygne-nb.jpg",
+    "surf.JPG",
+    "ble.jpg.JPG",
+    "moineau2.png"
+  ];
 
-  <script>
-    function filterCategory() {
-      const value = document.getElementById('category-select').value;
-      document.querySelectorAll('.category-section').forEach(section => {
-        section.classList.remove('active');
-      });
-      const selectedSection = document.getElementById(value);
-      if (selectedSection) {
-        selectedSection.classList.add('active');
-      }
+  function flashScreen() {
+    const flash = document.getElementById('flash');
+    flash.style.opacity = 1;
+
+    setTimeout(() => {
+      flash.style.opacity = 0;
+
+      // Changement d'image après le flash
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      document.getElementById('menu-image').src = images[currentImageIndex];
+    }, 100); // Durée du flash
+  }
+
+  function filterCategory() {
+    const value = document.getElementById('category-select').value;
+    document.querySelectorAll('.category-section').forEach(section => {
+      section.classList.remove('active');
+    });
+    const selectedSection = document.getElementById(value);
+    if (selectedSection) {
+      selectedSection.classList.add('active');
+    }
+  }
+
+  window.onload = function () {
+    filterCategory();
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.getElementById('lightbox-close');
+    const prevBtn = document.getElementById('lightbox-prev');
+    const nextBtn = document.getElementById('lightbox-next');
+
+    let currentImages = [];
+    let currentIndex = 0;
+
+    function showImage(index) {
+      if (currentImages.length === 0) return;
+      const image = currentImages[index];
+      lightboxImg.src = image.src;
+      lightboxImg.alt = image.alt || "Image";
+      currentIndex = index;
+      lightbox.style.display = 'flex';
     }
 
-    window.onload = function () {
-      filterCategory();
-
-      const lightbox = document.getElementById('lightbox');
-      const lightboxImg = document.getElementById('lightbox-img');
-      const closeBtn = document.getElementById('lightbox-close');
-      const prevBtn = document.getElementById('lightbox-prev');
-      const nextBtn = document.getElementById('lightbox-next');
-
-      let currentImages = [];
-      let currentIndex = 0;
-
-      function showImage(index) {
-  if (currentImages.length === 0) return;
-  const image = currentImages[index];
-  lightboxImg.src = image.src;
-  lightboxImg.alt = image.alt || "Image";
-  currentIndex = index;
-  lightbox.style.display = 'flex';
-}
-
-
-      document.querySelectorAll('.gallery img, .menu-photo img').forEach(img => {
-        img.addEventListener('click', () => {
-          const parentSection = img.closest('.category-section');
-          currentImages = Array.from(parentSection.querySelectorAll('img'));
-          const index = currentImages.indexOf(img);
-          showImage(index);
-        });
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.addEventListener('click', () => {
+        const parentSection = img.closest('.category-section');
+        currentImages = Array.from(parentSection.querySelectorAll('img'));
+        const index = currentImages.indexOf(img);
+        showImage(index);
       });
+    });
 
-      closeBtn.onclick = () => lightbox.style.display = 'none';
-      prevBtn.onclick = () => {
-        currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-        showImage(currentIndex);
-      };
-      nextBtn.onclick = () => {
-        currentIndex = (currentIndex + 1) % currentImages.length;
-        showImage(currentIndex);
-      };
+    // Désactive la lightbox pour les images du menu
+    document.querySelectorAll('.menu-photo img').forEach(img => {
+      img.addEventListener('click', () => {
+        // Rien ne se passe
+      });
+    });
+
+    closeBtn.onclick = () => lightbox.style.display = 'none';
+    prevBtn.onclick = () => {
+      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+      showImage(currentIndex);
     };
-  </script>
+    nextBtn.onclick = () => {
+      currentIndex = (currentIndex + 1) % currentImages.length;
+      showImage(currentIndex);
+    };
+  };
+</script>
+
 </body>
 </html>
