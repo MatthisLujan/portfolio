@@ -1,306 +1,313 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-image: url('fond.jpg');
-  background-size: cover;
-  background-position: center;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+ * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+      body {
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url('fond.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* Garantir que la page prenne toute la hauteur */
+      overflow-x: hidden; /* Empêche le débordement horizontal */
+      position: relative;
+    }
+    header {
+      text-align: center;
+      padding: 80px 20px 40px;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
 
-header {
+    h1 {
+      margin: 0;
+      font-size: 3em;
+    }
+
+    p {
+      font-size: 1.2em;
+      max-width: 700px;
+      margin: 10px auto;
+    }
+
+    .info-message {
+      margin-top: 10px;
+      font-size: 0.95em;
+      color: #ccc;
+    }
+
+    .menu-select {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    select {
+      padding: 10px;
+      font-size: 1.1em;
+      border-radius: 5px;
+      border: none;
+      background-color: white;
+      color: black;
+    }
+
+    .menu-photo {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 80%;
+      margin: 20px auto;
+      border: 3px solid white;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+      backdrop-filter: blur(5px);
+      cursor: pointer;
+    }
+    
+
+    #menu .menu-photo img {
+      width: auto;
+      max-width: 300px;
+      height: auto;
+      object-fit: cover;
+      border: 3px solid white;
+      border-radius: 10px;
+      box-sizing: border-box;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .category-section {
+      display: none;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .category-section.active {
+      display: block;
+    }
+
+    .category-title {
+      font-size: 2em;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      justify-items: center;
+      padding: 5px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .gallery-item {
+      margin-bottom: 30px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 3px solid white;
+      margin: 0 2px;
+    }
+
+    @media (max-width: 768px) {
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+      .gallery-item {
+        margin-bottom: 20px; /* Espacement vertical encore plus petit */
+      }
+    
+
+    /* Appliquer le même cadre et taille d'image aux photos des catégories */
+    .category-section .menu-photo img,
+    .gallery-item img {
+      width: auto; /* Laisse la largeur s'ajuster automatiquement */
+      max-width: 300px; /* Limite la largeur à 300px (ajuste cette valeur si nécessaire) */
+      height: auto; /* Ajuste la hauteur automatiquement */
+      object-fit: cover; /* L'image remplira son conteneur sans déformation */
+      border: 3px solid white; /* Applique un cadre blanc autour de l'image */
+      border-radius: 10px; /* Coins arrondis comme pour l'image du menu */
+      box-sizing: border-box; /* Prendre en compte le cadre dans la taille de l'image */
+      display: block; /* Centrer l'image horizontalement */
+      margin: 0 auto; /* Centrer l'image dans son conteneur */
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.03);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .hover-text {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 0.9em;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .image-container:hover .hover-text {
+      opacity: 1;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      margin-top: auto;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    #lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 1000;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 50px;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    #lightbox-prev {
+      left: 30px;
+    }
+
+    #lightbox-next {
+      right: 30px;
+    }
+
+    .shadowed-text {
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+    }
+/* Texte au-dessus de l'appareil */
+.camera-hint {
   text-align: center;
-  padding: 80px 20px 40px;
-  background-color: rgba(0, 0, 0, 0.5);
-  transition: padding 0.3s, background-color 0.3s;
+  font-size: 10px;
+  color: #555;
+  margin-bottom: 5px;
 }
 
-h1 {
-  margin: 0;
-  font-size: 3em;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-p {
-  font-size: 1.2em;
-  max-width: 700px;
-  margin: 10px auto;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
-}
-
-.info-message {
-  margin-top: 10px;
-  font-size: 0.95em;
-  color: #ccc;
-}
-
-.menu-select {
-  text-align: center;
-  margin: 30px 0;
-  opacity: 0;
-  transform: translateY(-20px);
-  animation: slideIn 0.5s ease forwards;
-}
-
-select {
-  padding: 10px;
-  font-size: 1.1em;
-  border-radius: 5px;
-  border: none;
-  background-color: white;
-  color: black;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.menu-photo {
-  width: 400px;
-  margin: 30px auto;
-  text-align: center;
-}
-
-.menu-photo p {
-  font-size: 1.1em;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-/* Container de l'image */
-.image-wrapper {
-  display: inline-block; /* Assure que le conteneur prend la taille exacte de l'image */
-  padding: 0; /* Élimine les marges internes */
-  border: 3px solid white; /* Applique le cadre autour de l'image */
-  border-radius: 10px; /* Coins arrondis */
-  box-sizing: border-box; /* Inclut la bordure dans la taille de l'élément */
-}
-
-/* Conteneur de l'image */
-.image-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden; /* Cache tout débordement */
-  padding: 0; /* Enlève les espaces inutiles autour de l'image */
-}
-
-/* Image dans le menu et la galerie */
-.menu-photo img,
-.gallery-item img {
-  width: 100%;
-  height: 100%; /* Permet à l'image de s'ajuster à la taille du conteneur */
-  border-radius: 10px; /* Coins arrondis */
-  object-fit: cover; /* Fait en sorte que l'image couvre l'espace sans déformation */
-  box-sizing: border-box; /* Assure que la bordure est incluse dans les dimensions de l'image */
-}
-
-
-.category-section {
-  display: none;
-  padding: 20px;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.category-section.active {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.category-title {
-  font-size: 2em;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-/* Par défaut : 4 images par ligne */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px 10px;
-  justify-items: center;
-  padding: 5px;
-  max-height: 80vh;
-  overflow-y: auto;
-}
-
-/* Sur les petits écrans (tablettes, téléphones) : 2 images par ligne */
-@media (max-width: 768px) {
-  .gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Sur les très petits écrans (smartphones) : 1 image par ligne */
-@media (max-width: 480px) {
-  .gallery {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-.gallery-item {
-  max-width: 220px;
-  width: 100%;
-  border: 3px solid #fff;
-  border-radius: 12px;
-  background-color: rgba(255, 255, 255, 0.1);
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(50px);
-  animation: fadeInUp 0.5s forwards;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+/* Appareil photo */
+.camera-draw {
+  width: 80px;
+  height: 60px;
   cursor: pointer;
+  animation: heartbeat 2s infinite;
+  margin: 0 auto 20px;
 }
 
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.gallery-item img {
+.camera-body {
   width: 100%;
   height: 100%;
-  border-radius: 10px;
-  object-fit: cover;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  background: #333;
+  border-radius: 8px;
+  position: relative;
 }
 
-.gallery-item p {
-  margin: 10px;
-  color: #fff;
-  font-weight: 500;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+.lens {
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, #666 20%, #000);
+  border-radius: 50%;
+  position: absolute;
+  top: 15px;
+  left: 25px;
+  border: 2px solid #999;
 }
 
-.gallery-item:hover {
-  transform: scale(1.1);
-  opacity: 0.9;
+.flash {
+  width: 10px;
+  height: 10px;
+  background: #f5f5f5;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  border-radius: 50%;
 }
 
-.gallery-item img:hover {
-  transform: scale(1.05);
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: white;
-  margin-top: auto;
-}
-
-a {
-  color: white;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* Lightbox */
-#lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.95);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  z-index: 1000;
-  opacity: 0;
-  transform: scale(0.8);
-  animation: lightboxFadeIn 0.5s forwards;
-}
-
-@keyframes lightboxFadeIn {
-  to {
-    opacity: 1;
+/* Animation de battement */
+@keyframes heartbeat {
+  0%, 100% {
     transform: scale(1);
   }
-}
-
-#lightbox.open {
-  display: flex;
-}
-
-#lightbox img {
-  max-width: 90%;
-  max-height: 80%;
-  border-radius: 10px;
-}
-
-#lightbox-close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  color: white;
-  font-size: 40px;
-  cursor: pointer;
-}
-
-.lightbox-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 50px;
-  color: white;
-  cursor: pointer;
-  user-select: none;
-}
-
-#lightbox-prev {
-  left: 30px;
-}
-
-#lightbox-next {
-  right: 30px;
-}
-
-/* Galerie avec défilement vertical sur mobile */
-@media (max-width: 768px) {
-  .gallery {
-    grid-template-columns: 1fr;
-    max-height: 60vh; /* Hauteur limitée pour les galeries */
-    overflow-y: auto; /* Défilement vertical */
-    margin-top: 20px; /* Espacement */
-  }
-
-  /* Assure-toi que les images ne débordent pas */
-  .gallery-item img {
-    object-fit: cover;
-    width: 100%;
-    height: auto;
+  50% {
+    transform: scale(1.05);
   }
 }
 
-
-@media (max-width: 480px) {
-  .gallery {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Effet de rétrécissement de l'en-tête lors du défilement */
-header.shrink {
-  padding: 40px 20px 20px;
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.menu-photo:hover {
-  transform: scale(1.02);
-}
-.shadowed-text {
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
-}
+ /* Flash blanc pleine page */
+    #flash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; /* Assurez-vous qu'il couvre toute la page */
+      background: white;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transition: opacity 0.1s ease;
+    }
