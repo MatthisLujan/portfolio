@@ -127,14 +127,24 @@
       border: 3px solid white;
       margin: 0 2px;
     }
-@media (max-width: 768px) {
-    .menu-image {
-        width: 100%;
-        height: auto;
-        object-fit: cover; /* Assure que l'image s'ajuste bien */
-    }
+/* Adaptation de la taille du menu-image pour mobile */
+#menu-image {
+  width: 100%;  /* L'image s'ajuste à 100% de la largeur disponible */
+  max-width: 500px;  /* Limite la taille maximale pour éviter qu'elle soit trop grande */
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px; /* Garde les coins arrondis */
 }
 
+/* Ajustements pour les petits écrans */
+@media (max-width: 768px) {
+  /* Adapter la taille de l'image du menu */
+  #menu-image {
+    width: 100%;
+    height: auto;
+  }
+
+  }
 
     @media (max-width: 768px) {
       .gallery {
@@ -339,7 +349,7 @@
   <header>
     <h1>Matthis – Photographie</h1>
     <p>Je suis Matthis, passionné de photographie. Découvrez ici mes créations à travers différentes catégories.</p>
-    <p class="info-message">Utilisez le menu ci-dessus pour accéder aux galeries.</p>
+    <p class="info-message">Utilisez le menu ci-dessous pour accéder aux galeries.</p>
   </header>
 
   <div class="menu-select">
@@ -364,8 +374,6 @@
      
 
       <p class="shadowed-text">
-        Voici une de mes dernières photos ! Elle représente bien mon travail.
-      </p>
      <p class="camera-hint">Prend une photo ! Attention au flash ! </p>
 
 <div class="camera-draw" onclick="flashScreen()">
@@ -376,8 +384,7 @@
 </div>
 
 
-      <p class="info-message shadowed-text">
-        Choisissez une catégorie dans le menu déroulant ci-dessus pour commencer.
+    
       </p>
       <p class="contact-info">
         <a href="https://instagram.com/matthis.photo" target="_blank">
